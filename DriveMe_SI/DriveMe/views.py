@@ -1,6 +1,6 @@
-from .models import Driver, Customer, Routes, Trips, Estimates, Vehicle
-from django_filter.rest_framework import DjangoFilterBackend
-from .serializers import DriverSerializer, customerSerializaer,RoutesSerializer, TripsSerializer, EstimatesSerializer, VehicleSerializer
+from .models import Driver, Customer, Route, Trip, Vehicle, TypeOfVehicle
+from django_filters.rest_framework import DjangoFilterBackend
+from .serializers import DriverSerializer, customerSerializaer,RoutesSerializer, TripsSerializer, VehicleSerializer, TypeofvehicleSerializer
 from rest_framework import generics, filters
 
 # Create your views here.
@@ -24,38 +24,35 @@ class RetrieveUpdateDeleteCustomer(generics.RetrieveUpdateDestroyAPIView):
 
 #----------CRUD Routes--------
 class ListCreateRoutes(generics.ListCreateAPIView):
-    queryset = Routes.objects.all()
+    queryset = Route.objects.all()
     serializer_class = RoutesSerializer
 
 class RetrieveUpdateDeleteRoutes(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Routes.objects.all()
+    queryset = Route.objects.all()
     serializer_class = RoutesSerializer
 
 #----------CRUD Trips--------
 class ListCreateTrips(generics.ListCreateAPIView):
-    queryset = Trips.objects.all()
+    queryset = Trip.objects.all()
     serializer_class = TripsSerializer
 
 class RetrieveUpdateDeleteTrips(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Trips.objects.all()
+    queryset = Trip.objects.all()
     serializer_class = TripsSerializer
 
-#----------CRUD Estimates--------
-class ListCreateEstimates(generics.ListCreateAPIView):
-    queryset = Estimates.objects.all()
-    serializer_class = EstimatesSerializer
-    
-class RetrieveUpdaterDeleteEstimates(generics.RetrieveUpdateDestroyAPIView):
-    queryset =Estimates.objects.all()
-    sarializer_class =EstimatesSerializer 
-    
+#----------CRUD Type_vehicle--------
+class ListCreateTypeOfVehicle(generics.ListCreateAPIView):
+    queryset = TypeOfVehicle.objects.all()
+    serializer_class = TypeofvehicleSerializer
 
-#----------CRUD Vehicle--------
-class ListrCreateVehicle(generics.ListCreateAPIView):
-    queryset =Vehicle.objects.all()
-    sarializer_class =VehicleSerializer
+class RetrieveUpdateDeleteTypeOfVehicle(generics.RetrieveUpdateDestroyAPIView):
+    queryset = TypeOfVehicle.objects.all()
+    serializer_class = TypeofvehicleSerializer
+ #----------CRUD Vehicle--------
+class ListCreateVehicle(generics.ListCreateAPIView):
+    queryset = Vehicle.objects.all()
+    serializer_class = VehicleSerializer
 
-class RetrieveUpdaterDeleteVehicle(generics.RetrieveUpdateDestroyAPIView):
-    queryset =Vehicle.objects.all()
-    sarializer_class =VehicleSerializer 
-    
+class RetrieveUpdateDeleteVehicle(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Vehicle.objects.all()
+    serializer_class = VehicleSerializer

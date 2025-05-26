@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Driver, Customer, Routes, Trips, Estimates, Vehicle
+from .models import Driver, Customer, Route, Trip, Vehicle, TypeOfVehicle
 
 class DriverSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,17 +13,17 @@ class customerSerializaer(serializers.ModelSerializer):
 
 class RoutesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Routes
+        model = Route
         fields = '__all__'  
 
 class TripsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Trips
+        model = Trip
         fields = '__all__'  
 
-class EstimatesSerializer(serializers.ModelSerializer):
+class TypeofvehicleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Estimates
+        model = TypeOfVehicle
         fields = '__all__'  
 
 class VehicleSerializer(serializers.ModelSerializer):

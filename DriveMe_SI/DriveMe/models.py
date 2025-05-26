@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.gis.db import models as gis_models
+
 
 # Driver Model.
 class Driver(models.Model):
@@ -21,6 +21,7 @@ class Customer(models.Model):
 
 #Type of Vehicle
 class TypeOfVehicle(models.Model):
+    id_type_vehicle = models.AutoField(primary_key=True, editable=False)
     name_type_vehicle = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
@@ -30,7 +31,7 @@ class TypeOfVehicle(models.Model):
 class Vehicle(models.Model):
     driver = models.OneToOneField(Driver, on_delete=models.CASCADE)
     type_vehicle = models.ForeignKey(TypeOfVehicle, on_delete=models.SET_NULL, null=True)
-    plate = models.CharField(max_length=6, unique=True)
+    plate = models.CharField(max_length=6, unique=True, primary_key=True)
     model = models.CharField(max_length=80)
     year = models.CharField(max_length=4)
     soat_expiration = models.DateField(null=True, blank=True)
@@ -40,9 +41,9 @@ class Vehicle(models.Model):
 class Route(models.Model):
     id_route = models.AutoField(primary_key=True, editable=False)
     origin_name = models.CharField(max_length=100)
-    origin_point = gis_models.PointField()
+    origin_point = models.CharField(max_length=100)
     destination_name = models.CharField(max_length=100)
-    destinantion_point = gis_models.PointField()
+    destinantion_point = models.CharField(max_length=100)
     distancia = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     estimated_time = models.IntegerField(null=True, blank=True)
 
