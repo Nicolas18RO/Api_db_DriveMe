@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.gis.db import models as gis_models
+
 
 # Driver Model.
 class Driver(models.Model):
@@ -40,9 +40,9 @@ class Vehicle(models.Model):
 class Route(models.Model):
     id_route = models.AutoField(primary_key=True, editable=False)
     origin_name = models.CharField(max_length=100)
-    origin_point = gis_models.PointField()
+    origin_point = models.CharField(max_length=100)
     destination_name = models.CharField(max_length=100)
-    destinantion_point = gis_models.PointField()
+    destinantion_point = models.CharField(max_length=100)
     distancia = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     estimated_time = models.IntegerField(null=True, blank=True)
 
@@ -66,5 +66,3 @@ class Trip(models.Model):
 
     def __str__(self):
         return f"Trip #{self.id} - {self.status}"
-
-
