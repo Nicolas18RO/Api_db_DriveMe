@@ -17,6 +17,7 @@ class Customer(models.Model):
     id_customer = models.AutoField(primary_key=True, editable=False)
     full_name_customer = models.CharField(max_length=100)
     phone_customer = models.CharField(max_length=20, unique=True)
+    document_customer = models.CharField(max_length=20)
     email_customer = models.EmailField(unique=True)
 
 #Type of Vehicle
@@ -43,7 +44,7 @@ class Route(models.Model):
     origin_name = models.CharField(max_length=100)
     origin_point = models.CharField(max_length=100)
     destination_name = models.CharField(max_length=100)
-    destinantion_point = models.CharField(max_length=100)
+    destination_point = models.CharField(max_length=100)
     distancia = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     estimated_time = models.IntegerField(null=True, blank=True)
 
