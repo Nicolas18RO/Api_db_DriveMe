@@ -16,7 +16,8 @@ class DriverTestCase(APITestCase):
     #Test for list drivers 
     def test_list_drivers(self):
         response =self.client.get("/api/driver/")
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, 
+                         status.HTTP_200_OK)
         print(status.HTTP_200_OK)
     #Test for create driver 
     def test_create_driver(self):
@@ -26,10 +27,14 @@ class DriverTestCase(APITestCase):
             'email_driver':'juanPerez20@gmail.com',
             'phone_driver':'300234567'
         }
-        response=self.client.post('/api/driver/', data, format='json')
-        print("Respuesta crear conductor:", response.data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED) 
-        self.assertEqual(response.data['full_name_driver'], "Juan Perez")
+        response=self.client.post('/api/driver/',
+                                   data, format='json')
+        print("Respuesta crear conductor:", 
+              response.data)
+        self.assertEqual(response.status_code, 
+                         status.HTTP_201_CREATED) 
+        self.assertEqual(response.data['full_name_driver'], 
+                         "Juan Perez")
        
     #Test for update driver
     def test_update_driver(self):
@@ -45,14 +50,19 @@ class DriverTestCase(APITestCase):
             'phone_driver':'303221'
         }
         url =f'/api/driver/{self.driver.id_drive}/'
-        response =self.client.put(url,update_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['full_name_driver'], "Juan Perez Acostas")
+        response =self.client.put(url,update_data,
+                                   format='json')
+        self.assertEqual(response.status_code,
+                          status.HTTP_200_OK)
+        self.assertEqual(response.data['full_name_driver'],
+                          "Juan Perez Acostas")
     #Test for delete driver    
     def test_delete_driver(self):
         url =f'/api/driver/{self.driver.id_drive}/'
         response =self.client.delete(url)
         print("respuesta:",response.data)
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, 
+                         status.HTTP_204_NO_CONTENT)
         response_check =self.client.get (url)
-        self.assertEqual(response_check.status_code,status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response_check.status_code,
+                         status.HTTP_404_NOT_FOUND)

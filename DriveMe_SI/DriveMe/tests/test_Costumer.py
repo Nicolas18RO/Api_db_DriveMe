@@ -14,7 +14,8 @@ class CostumerTestCase(APITestCase):
     #test for list costumers
     def test_list_customers(self):
         response=self.client.get("/api/customer/")
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, 
+                         status.HTTP_200_OK)
         print(status.HTTP_200_OK)
 
 
@@ -24,10 +25,13 @@ class CostumerTestCase(APITestCase):
             'phone_customer':'300234567',
             'email_customer':'CamiloPerez20@gmail.com',  
         }
-        response=self.client.post("/api/customer/",data, format='json')
+        response=self.client.post("/api/customer/",data, 
+                                  format='json')
         print("respuesta crear cliente", response.data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data['full_name_customer'],'Camilo Perez')
+        self.assertEqual(response.status_code,
+                          status.HTTP_201_CREATED)
+        self.assertEqual(response.data['full_name_customer'],
+                         'Camilo Perez')
 
     def test_update_customer(self):
         self.customer=Customer.objects.create(
@@ -36,22 +40,27 @@ class CostumerTestCase(APITestCase):
             email_customer='Juan@gmail.com'
         )
         update_data = {
-            'full_name_customer':'Juan Perez Acostas ',
+            'full_name_customer':'Juan Acostas ',
             'phone_customer':'3032234351',
             'email_customer':'Jua20@gmail.com'
         }
         url =f'/api/customer/{self.customer.id_customer}/'
-        response =self.client.put(url,update_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['full_name_customer'], "Juan Perez Acostas")
+        response =self.client.put(url,update_data,
+                                   format='json')
+        self.assertEqual(response.status_code,
+                          status.HTTP_200_OK)
+        self.assertEqual(response.data['full_name_customer'],
+                          "Juan Perez Acostas")
 
     def test_delete_customer(self):
         url =f'/api/customer/{self.customer.id_customer}/'
         response =self.client.delete(url)
         print("respuesta:",response.data)
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, 
+                         status.HTTP_204_NO_CONTENT)
         response_check =self.client.get (url)
-        self.assertEqual(response_check.status_code,status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response_check.status_code,
+                         status.HTTP_404_NOT_FOUND)
 
 
 

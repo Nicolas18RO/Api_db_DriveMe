@@ -8,6 +8,8 @@ from .views import (
     RetrieveUpdateDeleteTrips,
     ListCreateTypeOfVehicle,
     RetrieveUpdateDeleteTypeOfVehicle,
+    ListCreateVehicle,
+    RetrieveUpdateDeleteVehicle
     
 )
 urlpatterns = [
@@ -19,8 +21,8 @@ urlpatterns = [
     path("trips/<int:pk>/", RetrieveUpdateDeleteTrips.as_view(), name="retrieve_update_delete_trips"),
     path("type_of_vehicle/", ListCreateTypeOfVehicle.as_view(), name="list_create_type_of_vehicle"),
     path("type_of_vehicle/<int:pk>/", RetrieveUpdateDeleteTypeOfVehicle.as_view(), name="retrieve_update_delete_type_of_vehicle"),
-    path("vehicle/", ListCreateTypeOfVehicle.as_view(), name="list_create_vehicle"),
-    path("vehicle/<int:pk>/", RetrieveUpdateDeleteTypeOfVehicle.as_view(), name="retrieve_update_delete_vehicle"),
+    path("vehicle/", ListCreateVehicle.as_view(), name="list_create_vehicle"),
+    path("vehicle/<int:pk>/", RetrieveUpdateDeleteVehicle.as_view(), name="retrieve_update_delete_vehicle"),
   
 ]
  
